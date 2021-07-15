@@ -23,7 +23,16 @@
 
         <transition>
             <div id="content-multiples" v-if="showMultiples">
-                <div></div>
+                <div id="close">
+                    <button
+                        @click="showMultiples = false"
+                        class="content-button"
+                    >
+                        <img
+                            :src="require('./../assets/close.svg')"
+                        />
+                    </button>
+                </div>
                 <div 
                     class="item" 
                     v-for="(video, index) in src"
@@ -37,10 +46,10 @@
                             v-if="paused"
                             class="content-button"
                         >
-                            <img
-                                :src="require('./../assets/play.svg')"
-                            />
-                        </button>
+                        <img
+                            :src="require('./../assets/play.svg')"
+                        />
+                    </button>
                 </div>
             </div>
         </transition>
@@ -225,10 +234,12 @@
             toggleMute(){
                 this.player.muted = !this.player.muted
                 this.muted = this.player.muted
+                this.$emit('muted', this.muted)
             },
 
             changeVolume (event) {
                 this.player.volume = this.volume
+                this.$emit('onChangeVolume', this.volume)
             },
 
             changeTime () {
@@ -237,6 +248,7 @@
 
             onEnd () {
                 this.paused = true
+                this.$emit('onEnded', true)
             },
 
             pad_with_zeroes(number, length) {
@@ -312,6 +324,10 @@
                 }
                 this.player.pause()
                 this.paused = true
+            },
+
+            paused: function () {
+                this.$emit('onPlayPause', this.paused ? 'paused' : 'played')
             }
         }
     }
@@ -535,5 +551,10 @@
         font-size: 1.5rem;
         display: flex;
         justify-content: space-between;
+    }
+
+    #content-multiples #close {
+        width: 100%;
+        text-align: right;
     }
 </style>
