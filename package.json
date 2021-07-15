@@ -19,6 +19,11 @@
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/push-in/vue-full-player-video"
+  },
+  "homepage": "https://push-in.github.io/vue-full-player-video/",
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
