@@ -165,7 +165,7 @@
 
 <script>
     export default {
-        name: "full-player",
+        name: "VueFullPlayerVideo",
         components: {
         },
         props: {
